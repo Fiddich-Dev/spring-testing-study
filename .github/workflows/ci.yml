@@ -10,16 +10,16 @@ jobs:
     name: 완성본 테스트
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: JDK 21
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: '21'
           distribution: 'temurin'
 
       - name: Gradle 설정
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v6
 
       # 연습문제(@Tag("exercise"))는 test 태스크에서 제외돼 있다.
       # 일부러 실패하도록 둔 것이라, 여기 섞이면 CI 가 영원히 빨간불이 된다.
@@ -28,7 +28,7 @@ jobs:
 
       - name: 리포트 업로드
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-report
           path: build/reports/tests/test/
